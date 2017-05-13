@@ -1,0 +1,39 @@
+<html>
+<head>
+
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='bootstrap.css') }}">
+</head>
+<body>
+<div class='container'>
+    <div class='row'>
+        <div class='col-md-6'>
+        <h1>{{ restaurant.name }}</h1>
+        </div>
+        <div class='col-md-6'>
+            <a href="{{url_for('gdisconnect')}}">
+                <h2 class='text-right'>Logout </h2>
+            </a>
+    </div>
+</div>
+<div class='row'>
+    <a href="{{url_for('newMenuItem', restaurant_id = restaurant.id)}}">
+                <h3>Add new menu item</h3>
+            </a>
+    </div>
+<div class='row'>
+<div class='col-md-6'>
+        {% for i in menu %}
+        <div class='text-left'>{{i.name}}</div>
+        <div class='text-left'>{{i.price}} </div>
+        <div  class='text-left'>{{i.description}}</div><br><br>
+            <a href="{{url_for('editMenuItem',restaurant_id = restaurant.id, menu_id=i.id)}}" >Edit</a>
+    <a href="{{url_for('deleteMenuItem', restaurant_id = restaurant.id, menu_id=i.id)}}" >Delete</a>
+        {% endfor %}
+</div>
+</div>
+
+
+
+</div>
+</body>
+</html>
