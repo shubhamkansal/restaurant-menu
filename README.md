@@ -3,7 +3,7 @@
 ## Introduction
 This is a python module that queries a database for items on restaurant menus and then dynamically generates complete menus in the form of web pages and API endpoints. This module uses Flask framework to develop the application. Users can edit or delete items they've created. Adding, deleteing and editing items require oauth2 authorization.
 
-##Instructions
+## Instructions
 * go to https://console.developers.google.com/project and login with Google.
 * Create a new project
 * Name the project
