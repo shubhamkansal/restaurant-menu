@@ -166,7 +166,6 @@ def deleteRestaurant(restaurant_id):
         for i in menus:
             session.delete(i)
         session.delete(item)
-        session.delete(item)
         session.commit()
         return redirect(url_for('restaurant'))
     else:
