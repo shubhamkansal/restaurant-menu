@@ -161,7 +161,11 @@ def deleteRestaurant(restaurant_id):
         return redirect('/login')
     if item.user_id != login_session['user_id']:
         return "<script>function myFunction() {alert('You are not authorized');}</script><body onload='myFunction()''>"
-    if request.method == 'POST':
+    if request.method == 'POST':	
+        menus = session.query(MenuItem).filter_by(restaurant_id=item.id).all()
+        for i in menus:
+            session.delete(i)
+        session.delete(item)
         session.delete(item)
         session.commit()
         return redirect(url_for('restaurant'))
