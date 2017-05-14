@@ -157,15 +157,15 @@ def editRestaurant(restaurant_id):
            methods=['GET', 'POST'])
 def deleteRestaurant(restaurant_id):
     item = session.query(Restaurant).filter_by(id=restaurant_id).one()
+    menus = session.query(MenuItem).filter_by(restaurant=item).all()
     if 'username' not in login_session:
         return redirect('/login')
     if item.user_id != login_session['user_id']:
         return "<script>function myFunction() {alert('You are not authorized');}</script><body onload='myFunction()''>"
-    if request.method == 'POST':	
-        menus = session.query(MenuItem).filter_by(restaurant_id=item.id).all()
+    if request.method == 'POST':
+	session.delete(item)
         for i in menus:
             session.delete(i)
-        session.delete(item)
         session.commit()
         return redirect(url_for('restaurant'))
     else:
